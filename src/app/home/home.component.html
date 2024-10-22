@@ -1,0 +1,10 @@
+<div class="home-container">
+  <h1>Bem-vindo ao Chatbot</h1>
+  <form (ngSubmit)="startChat()">
+    <div>
+      <label for="prompt">Defina o Prompt do Sistema:</label>
+      <textarea id="prompt" [(ngModel)]="prompt" name="prompt" required></textarea>
+    </div>
+    <button type="submit">Iniciar Conversa</button>
+  </form>
+</div>
