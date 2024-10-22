@@ -1,10 +1,17 @@
 <div class="home-container">
-  <h1>Bem-vindo ao Chatbot</h1>
-  <form (ngSubmit)="startChat()">
-    <div>
-      <label for="prompt">Defina o Prompt do Sistema:</label>
-      <textarea id="prompt" [(ngModel)]="prompt" name="prompt" required></textarea>
-    </div>
-    <button type="submit">Iniciar Conversa</button>
-  </form>
+  <mat-card class="home-card">
+    <mat-card-header>
+      <mat-card-title>Bem-vindo ao Chatbot</mat-card-title>
+      <mat-card-subtitle>Defina o prompt do sistema para começar</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="startChat()" class="form-container">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Defina o Prompt do Sistema</mat-label>
+          <textarea matInput [(ngModel)]="prompt" name="prompt" required></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Iniciar Conversa</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

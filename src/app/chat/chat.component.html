@@ -1,12 +1,33 @@
 <div class="chat-container">
-  <h2>Conversa com o Chatbot</h2>
-  <div class="messages">
-    <div *ngFor="let msg of messages" [ngClass]="msg.sender">
-      <strong>{{ msg.sender === 'user' ? 'Você' : 'Chatbot' }}:</strong> {{ msg.content }}
-    </div>
-  </div>
-  <form (ngSubmit)="sendMessage()" class="message-form">
-    <input type="text" [(ngModel)]="currentMessage" name="message" placeholder="Digite sua mensagem..." required />
-    <button type="submit">Enviar</button>
-  </form>
+  <mat-card class="chat-card">
+    <mat-card-header>
+      <mat-card-title>Conversa com o Chatbot</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="chat-content">
+      <div class="messages">
+        <div *ngFor="let msg of messages" [ngClass]="msg.sender" class="message-item">
+          <mat-icon matListAvatar>
+            {{ msg.sender === 'user' ? 'person' : 'smart_toy' }}
+          </mat-icon>
+          <div class="message-content" [innerHTML]="msg.sender === 'bot' && msg.formattedContent ? msg.formattedContent : msg.content">
+            <!-- Mensagens do bot renderizadas com formatação -->
+            <!-- Mensagens do usuário exibidas como texto simples -->
+          </div>
+        </div>
+        <div *ngIf="isLoading" class="loading">
+          <mat-progress-spinner mode="indeterminate" diameter="30" color="accent"></mat-progress-spinner>
+        </div>
+        <div #messagesEnd></div>
+      </div>
+      <form (ngSubmit)="sendMessage()" class="message-form">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Digite sua mensagem...</mat-label>
+          <input matInput [(ngModel)]="currentMessage" name="message" required />
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit">
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
